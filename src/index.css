@@ -1,0 +1,658 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Lexend", "Fredoka", system-ui, sans-serif;
+  --font-body: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Telugu", "Noto Sans Tamil", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-indigo-brand: #5B4BFF;
+  --color-indigo-deep: #4435E6;
+  --color-pebby: #8C7DFF;
+  --color-pebby-light: #B2A7FF;
+  --color-amber-brand: #FFA500;
+  --color-amber-soft: #FFE4A8;
+  --color-cream: #FFF8E1;
+  --color-ink: #111111;
+  --color-lav-grey: #EEF0F8;
+  --color-pastel-lavender: #EAE5FF;
+  --color-pastel-butter: #FFF1B8;
+  --color-pastel-mint: #DDF7E8;
+  --color-pastel-blush: #FFE3EC;
+  --color-pastel-sky: #DFF1FF;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background-color: #ffffff;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  button, a, [role="button"] {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 3px solid #5B4BFF;
+    outline-offset: 3px;
+  }
+}
+
+/* Neo-Brutalist Core Surfaces */
+.neo-card {
+  border: 3px solid #111111;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0 #111111;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neo-card-sm {
+  border: 3px solid #111111;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 #111111;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neo-card-lift:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #111111;
+}
+
+.neo-btn {
+  border: 3px solid #111111;
+  border-radius: 9999px;
+  box-shadow: 4px 4px 0 #111111;
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 140ms ease;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #111111;
+}
+
+.neo-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 #111111;
+}
+
+.neo-btn-sm {
+  border: 2.5px solid #111111;
+  border-radius: 9999px;
+  box-shadow: 3px 3px 0 #111111;
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 140ms ease;
+}
+
+.neo-btn-sm:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4.5px 4.5px 0 #111111;
+}
+
+.neo-btn-sm:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #111111;
+}
+
+/* Navbar Squiggle Underline on Hover */
+.nav-link-item {
+  position: relative;
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), color 160ms ease;
+}
+
+.nav-link-item:hover {
+  transform: translateY(-2px);
+}
+
+.nav-link-squiggle {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 2px;
+  height: 6px;
+  opacity: 0;
+  transform: scaleX(0.4);
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.nav-link-item:hover .nav-link-squiggle {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Pebby Animations */
+@keyframes pebbyFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes pebbyTuftSway {
+  0%, 100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes pebbyWave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-16deg);
+  }
+  55% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-12deg);
+  }
+}
+
+@keyframes pebbyBlink {
+  0%, 92%, 100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.08);
+  }
+}
+
+@keyframes pebbyZzz {
+  0% {
+    opacity: 0;
+    transform: translate(0, 6px) scale(0.75);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(12px, -20px) scale(1.1);
+  }
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scanSweep {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes confettiPop {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(1.1) rotate(var(--rot));
+  }
+}
+
+.animate-pebby-float {
+  animation: pebbyFloat 3.6s ease-in-out infinite;
+}
+
+.animate-pebby-tuft {
+  transform-origin: 120px 44px;
+  animation: pebbyTuftSway 3.1s ease-in-out infinite;
+}
+
+.animate-pebby-wave {
+  transform-origin: 190px 150px;
+  animation: pebbyWave 2.2s ease-in-out infinite;
+}
+
+.animate-pebby-blink {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pebbyBlink 4.2s ease-in-out infinite;
+}
+
+.animate-zzz-1 {
+  animation: pebbyZzz 2.6s ease-out infinite;
+}
+
+.animate-zzz-2 {
+  animation: pebbyZzz 2.6s ease-out 0.85s infinite;
+}
+
+.animate-zzz-3 {
+  animation: pebbyZzz 2.6s ease-out 1.7s infinite;
+}
+
+/* Expressive 3D Pebby Mascot Pose Animations */
+@keyframes pebby3dWave {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(-1.5deg) scale(1, 1);
+  }
+  25% {
+    transform: translate3d(0, -6px, 0) rotate(2.8deg) scale(1.015, 0.99);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(-2deg) scale(0.99, 1.02);
+  }
+  75% {
+    transform: translate3d(0, -4px, 0) rotate(2.4deg) scale(1.01, 0.995);
+  }
+}
+
+@keyframes pebby3dRead {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(0deg) scale(1, 1);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0) rotate(-1.8deg) scale(1.015, 0.99);
+  }
+}
+
+@keyframes pebby3dThink {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(-3.5deg);
+  }
+  50% {
+    transform: translate3d(2px, -6px, 0) rotate(3deg);
+  }
+}
+
+@keyframes pebby3dCheer {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) scale(1, 1) rotate(0deg);
+  }
+  20% {
+    transform: translate3d(0, 3px, 0) scale(1.07, 0.93) rotate(-2deg);
+  }
+  50% {
+    transform: translate3d(0, -15px, 0) scale(0.95, 1.06) rotate(3deg);
+  }
+  75% {
+    transform: translate3d(0, 2px, 0) scale(1.04, 0.96) rotate(-1.5deg);
+  }
+}
+
+@keyframes pebby3dStamp {
+  0% {
+    transform: translate3d(0, -6px, 0) rotate(-5deg) scale(0.97, 1.04);
+  }
+  45% {
+    transform: translate3d(5px, 8px, 0) rotate(7deg) scale(1.08, 0.91);
+  }
+  100% {
+    transform: translate3d(0, 0px, 0) rotate(0deg) scale(1, 1);
+  }
+}
+
+@keyframes pebby3dWake {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0) rotate(2.5deg) scale(1.02);
+  }
+}
+
+@keyframes pebby3dPoint {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(2deg);
+  }
+  50% {
+    transform: translate3d(4px, -5px, 0) rotate(5deg);
+  }
+}
+
+@keyframes pebbyShadowBreath {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scaleX(0.84);
+    opacity: 0.12;
+  }
+}
+
+@keyframes propPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.55) translateY(8px) rotate(-10deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08) translateY(-2px) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes waveArcPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.92) rotate(-6deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08) rotate(6deg);
+  }
+}
+
+.animate-pebby-3d-wave {
+  animation: pebby3dWave 3.2s ease-in-out infinite;
+}
+
+.animate-pebby-3d-read {
+  animation: pebby3dRead 3.4s ease-in-out infinite;
+}
+
+.animate-pebby-3d-think {
+  animation: pebby3dThink 3.6s ease-in-out infinite;
+}
+
+.animate-pebby-3d-cheer {
+  animation: pebby3dCheer 1.25s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+.animate-pebby-3d-stamp {
+  animation: pebby3dStamp 360ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-pebby-3d-wake {
+  animation: pebby3dWake 2.8s ease-in-out infinite;
+}
+
+.animate-pebby-3d-point {
+  animation: pebby3dPoint 1.6s ease-in-out infinite;
+}
+
+.animate-pebby-shadow {
+  animation: pebbyShadowBreath 3.2s ease-in-out infinite;
+}
+
+.animate-prop-pop {
+  animation: propPopIn 380ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-wave-arcs {
+  animation: waveArcPulse 1.6s ease-in-out infinite;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-confetti {
+  animation: confettiPop 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtle dot pattern for studio craft */
+.bg-dot-grid {
+  background-image: radial-gradient(#111111 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Warm corkboard surface for Fix-it Board */
+.bg-corkboard {
+  background-color: #F4E2BE;
+  background-image:
+    radial-gradient(rgba(17, 17, 17, 0.1) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(180, 120, 40, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px, 11px 11px;
+  background-position: 0 0, 5px 5px;
+}
+
+/* Giant Outlined Neo-Brutalist Display Text */
+.text-outlined-ink {
+  -webkit-text-stroke: 3px #111111;
+  color: rgba(255, 255, 255, 0.72);
+  paint-order: stroke fill;
+}
+
+.text-outlined-footer {
+  -webkit-text-stroke: 2.5px rgba(255, 248, 225, 0.42);
+  color: transparent;
+  paint-order: stroke fill;
+}
+
+/* 3D Sticky-Note Flip Utilities */
+.flip-perspective {
+  perspective: 1100px;
+}
+
+.flip-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 560ms cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-face-back {
+  transform: rotateY(180deg);
+}
+
+/* Keyframes for Fix-it Stamp, Footer Anticipation, Pop, Hop & Rocket Launch */
+@keyframes stampSlam {
+  0% {
+    opacity: 0;
+    transform: scale(1.9) rotate(-18deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(0.92) rotate(-8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-10deg);
+  }
+}
+
+@keyframes burrowShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2.5px) rotate(-1deg); }
+  75% { transform: translateX(2.5px) rotate(1deg); }
+}
+
+@keyframes pebbyPopSquash {
+  0% { transform: translateY(90px) scale(0.84, 1.16); }
+  55% { transform: translateY(-16px) scale(1.07, 0.94); }
+  78% { transform: translateY(4px) scale(0.97, 1.03); }
+  100% { transform: translateY(0px) scale(1, 1); }
+}
+
+@keyframes pebbyHopGiggle {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  25% { transform: translateY(-22px) scale(0.96, 1.06); }
+  50% { transform: translateY(0) scale(1.06, 0.94); }
+  75% { transform: translateY(-12px) scale(0.98, 1.03); }
+}
+
+@keyframes rocketLaunch {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  22% { transform: translateY(10px) scale(1.04, 0.95); opacity: 1; }
+  100% { transform: translateY(-480px) scale(0.85); opacity: 0; }
+}
+
+@keyframes dustPuff {
+  0% { opacity: 0.95; transform: translate(0, 0) scale(0.4); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.35); }
+}
+
+@keyframes globeSpin {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-48px); }
+}
+
+.animate-stamp-slam {
+  animation: stampSlam 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-burrow-shake {
+  animation: burrowShake 0.42s ease-in-out infinite;
+}
+
+.animate-pebby-pop {
+  animation: pebbyPopSquash 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-pebby-hop {
+  animation: pebbyHopGiggle 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-rocket-launch {
+  animation: rocketLaunch 880ms cubic-bezier(0.45, 0, 0.85, 0.35) forwards;
+}
+
+.animate-dust-puff {
+  animation: dustPuff 650ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-globe-spin {
+  animation: globeSpin 7s linear infinite;
+}
+
+@keyframes scrollHintBounce {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 6px, 0);
+  }
+}
+
+@keyframes railTuftPop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.6);
+  }
+  40% {
+    opacity: 1;
+    transform: translate3d(0, -6px, 0) scale(1.12);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-scroll-hint {
+  animation: scrollHintBounce 1.8s ease-in-out infinite;
+}
+
+.animate-rail-tuft-pop {
+  animation: railTuftPop 650ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Stacked Chapter Card Top Edge on Desktop (>= 900px) — shadow fades in via ChapterCard overlay so it never peeks below fold */
+@media (min-width: 900px) {
+  .chapter-stack-card {
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-top: 3px solid #111111;
+  }
+  .chapter-stack-shadow {
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    box-shadow: 0 -8px 0 #111111;
+  }
+}
+
+/* Desktop Custom Cursor (fine pointer only) */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active {
+    cursor: none;
+  }
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active [role="button"],
+  .custom-cursor-active input {
+    cursor: none;
+  }
+}
+
+/* Strict Prefers Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-pebby-float,
+  .animate-pebby-tuft,
+  .animate-pebby-wave,
+  .animate-pebby-blink,
+  .animate-zzz-1,
+  .animate-zzz-2,
+  .animate-zzz-3,
+  .animate-marquee,
+  .animate-burrow-shake,
+  .animate-pebby-pop,
+  .animate-pebby-hop,
+  .animate-rocket-launch,
+  .animate-globe-spin,
+  .animate-scroll-hint,
+  .animate-rail-tuft-pop,
+  .animate-pebby-3d-wave,
+  .animate-pebby-3d-read,
+  .animate-pebby-3d-think,
+  .animate-pebby-3d-cheer,
+  .animate-pebby-3d-stamp,
+  .animate-pebby-3d-wake,
+  .animate-pebby-3d-point,
+  .animate-pebby-shadow,
+  .animate-prop-pop,
+  .animate-wave-arcs {
+    animation: none !important;
+  }
+  .neo-card,
+  .neo-card-sm,
+  .neo-btn,
+  .neo-btn-sm,
+  .nav-link-item,
+  .flip-card-inner {
+    transition: none !important;
+  }
+}
